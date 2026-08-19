@@ -38,20 +38,10 @@ function reveal() {
   revealed = true;
   loadHero();
   document.body.classList.add("revealed");
-  try {
-    sessionStorage.setItem(REVEAL_KEY, "1");
-  } catch {
-    /* private mode */
-  }
 }
 
 try {
-  if (sessionStorage.getItem(REVEAL_KEY)) {
-    revealed = true;
-    greetingConsumed = true;
-    loadHero();
-    document.body.classList.add("revealed");
-  }
+  sessionStorage.removeItem(REVEAL_KEY);
 } catch {
   /* private mode */
 }
