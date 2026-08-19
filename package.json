@@ -1,0 +1,11 @@
+{
+  "name": "agnetha-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A quiet public conversation with Agnetha.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
