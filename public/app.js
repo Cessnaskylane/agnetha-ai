@@ -24,9 +24,19 @@ function isUnlockPhrase(text) {
   return normalizePhrase(text) === "aha";
 }
 
+function loadHero() {
+  const img = document.querySelector(".hero-photo");
+  if (!img) return;
+  const real = img.getAttribute("data-src");
+  if (real && img.getAttribute("src") !== real) {
+    img.setAttribute("src", real);
+  }
+}
+
 function reveal() {
   if (revealed) return;
   revealed = true;
+  loadHero();
   document.body.classList.add("revealed");
   try {
     sessionStorage.setItem(REVEAL_KEY, "1");
@@ -39,6 +49,7 @@ try {
   if (sessionStorage.getItem(REVEAL_KEY)) {
     revealed = true;
     greetingConsumed = true;
+    loadHero();
     document.body.classList.add("revealed");
   }
 } catch {

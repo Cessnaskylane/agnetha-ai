@@ -8,16 +8,21 @@
   <meta name="theme-color" content="#0c090e">
   <meta name="color-scheme" content="dark">
   <meta name="robots" content="noindex,nofollow">
+  <style>
+    html,body{background:#0c090e}
+    .hero-photo,.notice,h1{opacity:0;visibility:hidden}
+    body.revealed .hero-photo,body.revealed .notice,body.revealed h1{opacity:1;visibility:visible}
+  </style>
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css?v=aha4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=aha3">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-  <img class="hero-photo" src="/hero.png?v=thumb2" alt="A silhouette of Agnetha" width="1920" height="1080">
+  <img class="hero-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/hero.png?v=thumb2" alt="A silhouette of Agnetha" width="1920" height="1080">
   <p class="notice">for private use only</p>
   <main id="app" class="home">
     <header class="hero">
@@ -49,6 +54,6 @@
     </form>
   </main>
   <noscript><p class="notice">This page needs a little JavaScript to talk.</p></noscript>
-  <script src="/app.js?v=aha1" type="module"></script>
+  <script src="/app.js?v=aha2" type="module"></script>
 </body>
 </html>
