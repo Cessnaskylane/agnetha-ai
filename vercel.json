@@ -2,6 +2,11 @@
   "framework": null,
   "buildCommand": "echo static",
   "outputDirectory": "public",
+  "functions": {
+    "api/portrait.js": {
+      "includeFiles": "private/portrait.png"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -9,6 +14,12 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "no-referrer" },
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    },
+    {
+      "source": "/og.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
   ]
