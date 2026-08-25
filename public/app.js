@@ -10,22 +10,9 @@ let busy = false;
 
 let revealed = false;
 
-async function loadHero() {
-  const img = document.querySelector(".hero-photo");
-  if (!img) return;
-  const real = img.getAttribute("data-src") || "/api/portrait";
-  img.setAttribute("src", real + (real.includes("?") ? "&" : "?") + "t=" + Date.now());
-}
-
-async function reveal() {
+function reveal() {
   if (revealed) return;
   revealed = true;
-  try {
-    await fetch("/api/unlock", { method: "POST", credentials: "same-origin" });
-  } catch {
-    /* still try to show; portrait will 404 without cookie */
-  }
-  await loadHero();
   document.body.classList.add("revealed");
 }
 
