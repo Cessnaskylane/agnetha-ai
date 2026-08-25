@@ -8,13 +8,44 @@ const sendBtn = form.querySelector(".send");
 const history = [];
 let busy = false;
 
+const REVEAL_KEY = "agnetha-revealed";
 let revealed = false;
+let greetingConsumed = false;
+
+function normalizePhrase(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isUnlockPhrase(text) {
+  return normalizePhrase(text) === "aha";
+}
+
+function loadHero() {
+  const img = document.querySelector(".hero-photo");
+  if (!img) return;
+  const real = img.getAttribute("data-src");
+  if (real && img.getAttribute("src") !== real) {
+    img.setAttribute("src", real);
+  }
+}
 
 function reveal() {
   if (revealed) return;
   revealed = true;
+  loadHero();
   document.body.classList.add("revealed");
 }
+
+try {
+  sessionStorage.removeItem(REVEAL_KEY);
+} catch {
+  /* private mode */
+}
+
 
 function escapeHtml(text) {
   return text
@@ -148,12 +179,36 @@ async function ask(text) {
   }
 }
 
+const WELCOME = "Hey, I'm Agnetha, Andrew's personal assistant. How can I help you?";
+
+function unlock() {
+  greetingConsumed = true;
+  reveal();
+  enterTalking();
+  addLine("agnetha", WELCOME);
+  history.push({ role: "assistant", content: WELCOME });
+}
+
+input.addEventListener("input", () => {
+  if (!greetingConsumed && isUnlockPhrase(input.value)) {
+    input.value = "";
+    unlock();
+  }
+});
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const text = input.value;
   input.value = "";
-  ask(text);
+  if (!revealed) {
+    if (isUnlockPhrase(text)) unlock();
+    return;
+  }
+  if (isUnlockPhrase(text) && !greetingConsumed) {
+    unlock();
+  } else {
+    ask(text);
+  }
 });
 
-void reveal();
 window.addEventListener("load", () => input.focus());

@@ -340,11 +340,7 @@ button, input { -webkit-tap-highlight-color: transparent; }
   gap: 0.7rem;
   width: min(100%, 26rem);
 }
-
-.talk-dock .composer {
-  width: 100%;
-}
-
+.talk-dock .composer { width: 100%; }
 .mail-link {
   font-family: var(--sans);
   font-size: 0.72rem;
@@ -353,13 +349,5 @@ button, input { -webkit-tap-highlight-color: transparent; }
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
 }
-
 .mail-link:hover,
-.mail-link:focus-visible {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.mail-link:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.35);
-  outline-offset: 3px;
-}
+.mail-link:focus-visible { color: rgba(255, 255, 255, 0.72); }
